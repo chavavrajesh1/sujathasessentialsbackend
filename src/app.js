@@ -25,28 +25,30 @@ const app = express();
 app.use(helmet());
 app.use(
   cors({
-    origin: (origin, callback) => {
+    origin: function (origin, callback) {
       const allowedOrigins = [
         "https://sujathasessentialsfrontend.vercel.app",
         "http://localhost:5173"
       ];
 
       // Allow Vercel preview deployments (*.vercel.app)
-      const vercelPreview = /\.vercel\.app$/;
+      const vercelPattern = /\.vercel\.app$/;
 
-      // Allow server-to-server requests (no origin)
       if (!origin) return callback(null, true);
 
-      if (allowedOrigins.includes(origin) || vercelPreview.test(origin)) {
+      if (allowedOrigins.includes(origin) || vercelPattern.test(origin)) {
         return callback(null, true);
       }
 
-      console.log("❌ CORS BLOCKED ORIGIN:", origin);
+      console.log("❌ BLOCKED BY CORS:", origin);
       return callback(new Error("Not allowed by CORS"));
     },
     credentials: true,
+    methods: "GET,POST,PUT,DELETE,PATCH",
+    allowedHeaders: "Content-Type,Authorization"
   })
 );
+
 
 
 app.use(express.json({ limit: "10mb" }));
