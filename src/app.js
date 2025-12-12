@@ -23,7 +23,18 @@ const app = express();
    MIDDLEWARE
 ----------------------------- */
 app.use(helmet());
-app.use(cors({ origin: true, credentials: true })); // ⭐ better CORS handling
+app.use(
+  cors({
+    origin: [
+      "https://sujathasessentialsfrontend.vercel.app", // your Vercel frontend
+      "http://localhost:5173"                          // local dev
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+  })
+);
+
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true }));
 
