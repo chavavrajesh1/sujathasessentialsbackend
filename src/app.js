@@ -26,14 +26,16 @@ app.use(helmet());
 app.use(
   cors({
     origin: [
-      "https://sujathasessentialsfrontend.vercel.app", // your Vercel frontend
-      "http://localhost:5173"                          // local dev
+      "https://sujathasessentialsfrontend.vercel.app", // Production
+      /\.vercel\.app$/,                                // ⭐ Allow ALL Vercel preview URLs
+      "http://localhost:5173"                          // Local dev
     ],
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
   })
 );
+
 
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true }));
