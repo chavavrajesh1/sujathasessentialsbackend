@@ -28,7 +28,7 @@ app.use(
     origin: function (origin, callback) {
       const allowedOrigins = [
         "https://sujathasessentialsfrontend.vercel.app",
-        "http://localhost:5173"
+        "http://localhost:3000"
       ];
 
       // Allow Vercel preview deployments (*.vercel.app)
