@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Mango Pickle (Small)",
+    "slug": "mango-pickle-small",
+    "description": "Homemade spicy Andhra style mango pickle.",
+    "category": "pickles",
+    "price": 250,
+    "countInStock": 50
+  },
+  {
+    "name": "Agarbatti Pack",
+    "slug": "agarbatti-pack",
+    "description": "Premium temple fragrance agarbattis.",
+    "category": "temple",
+    "price": 120,
+    "countInStock": 200
+  }
+]

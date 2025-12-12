@@ -1,0 +1,18 @@
+[
+  {
+    "title": "Kasi – Ayodhya – Gaya Yatra",
+    "slug": "kasi-ayodhya-gaya",
+    "description": "Premium pilgrimage covering Kasi, Ayodhya, Gaya, Prayagraj & nearby holy places.",
+    "places": "Kasi, Ayodhya, Gaya, Prayagraj, Chitrakoot",
+    "duration": "15 Days",
+    "price": 15550
+  },
+  {
+    "title": "Rameswaram – Madurai – Kanyakumari Yatra",
+    "slug": "rameswaram-madurai-kanyakumari",
+    "description": "Explore the most sacred temples of South India.",
+    "places": "Rameswaram, Kanyakumari, Madurai, Srirangam",
+    "duration": "10 Days",
+    "price": 12500
+  }
+]
