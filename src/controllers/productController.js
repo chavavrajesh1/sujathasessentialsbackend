@@ -8,6 +8,7 @@ const allowedMap = {
   pickles: ["veg", "nonveg", "andhra", "telangana"],
   temple: ["agarbatti", "puja-items", "sandal"],
   sweets: ["sweet", "hot"],          // ✅ sweets & hot foods
+  podulu: ["powder", "chutney-powder"],
   home: [],
 };
 

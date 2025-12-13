@@ -32,6 +32,7 @@ const productSchema = new mongoose.Schema(
         "temple",
         "home",
         "sweets", // ✅ ADDED
+        "podulu"
       ],
     },
 
@@ -55,6 +56,11 @@ const productSchema = new mongoose.Schema(
         // Sweets & Hot Foods
         "sweet", // ✅ ADDED
         "hot",   // ✅ ADDED
+
+        // Podulu
+        "powder",
+        "chutney-powder"
+
       ],
       default: "",
     },
