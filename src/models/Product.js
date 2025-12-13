@@ -2,7 +2,11 @@ const mongoose = require("mongoose");
 
 const productSchema = new mongoose.Schema(
   {
-    name: { type: String, required: true, trim: true },
+    name: {
+      type: String,
+      required: true,
+      trim: true,
+    },
 
     slug: {
       type: String,
@@ -12,41 +16,76 @@ const productSchema = new mongoose.Schema(
       trim: true,
     },
 
-    description: { type: String, default: "" },
+    description: {
+      type: String,
+      default: "",
+    },
 
+    /* ===============================
+       CATEGORY
+    =============================== */
     category: {
       type: String,
       required: true,
-      enum: ["pickles", "temple", "home"],
+      enum: [
+        "pickles",
+        "temple",
+        "home",
+        "sweets", // ✅ ADDED
+      ],
     },
 
+    /* ===============================
+       SUB CATEGORY
+    =============================== */
     subCategory: {
       type: String,
       enum: [
+        // Pickles
         "veg",
         "nonveg",
         "andhra",
         "telangana",
+
+        // Temple
         "agarbatti",
         "puja-items",
         "sandal",
+
+        // Sweets & Hot Foods
+        "sweet", // ✅ ADDED
+        "hot",   // ✅ ADDED
       ],
       default: "",
     },
 
-    price: { type: Number, required: true, min: 0, default: 0 },
+    price: {
+      type: Number,
+      required: true,
+      min: 0,
+      default: 0,
+    },
 
-    countInStock: { type: Number, min: 0, default: 0 },
+    countInStock: {
+      type: Number,
+      min: 0,
+      default: 0,
+    },
 
-    // ⭐ Images optional (Cloudinary or Uploads)
+    /* ===============================
+       IMAGES (OPTIONAL)
+    =============================== */
     images: [
       {
-        url: { type: String, required: false },
-        public_id: { type: String, required: false },
+        url: { type: String },
+        public_id: { type: String },
       },
     ],
 
-    createdAt: { type: Date, default: Date.now },
+    createdAt: {
+      type: Date,
+      default: Date.now,
+    },
   },
   {
     toObject: { virtuals: true },
@@ -56,23 +95,18 @@ const productSchema = new mongoose.Schema(
 
 /* ===========================================================
    ⭐ Virtual Field: product.image
-   Returns correct image automatically:
-
-   - If Cloudinary → return url
-   - If upload file → return /uploads/xyz.jpg
-   - If no image → return placeholder
+   Always returns a usable image
 =========================================================== */
 productSchema.virtual("image").get(function () {
   if (this.images?.length > 0 && this.images[0].url) {
     return this.images[0].url;
   }
 
-  // Fallback placeholder
   return "https://via.placeholder.com/400?text=No+Image";
 });
 
 /* ===========================================================
-   ⭐ Helper Method (If needed in controllers)
+   ⭐ Helper Method (optional)
 =========================================================== */
 productSchema.methods.getImage = function () {
   if (this.images?.length > 0 && this.images[0].url) {
